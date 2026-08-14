@@ -63,3 +63,6 @@ verify-*.png
 db/*.db
 db/*.db-journal
 .zscripts/dev.pid
+
+# QA screenshots (local only)
+qa-*.png
