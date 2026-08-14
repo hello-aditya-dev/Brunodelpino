@@ -51,12 +51,12 @@ export const mediaAssets: MediaAsset[] = [
   {
     id: "M03",
     src: "/assets/atmos-madrid.png",
-    alt: "Abstract dusk skyline with a single traced line — home finale atmosphere",
+    alt: "Abstract dusk skyline with a single traced line — finale atmosphere",
     event: "Madrid",
     year: 2026,
     rightsStatus: "generated-atmosphere",
     focalPoint: { x: 50, y: 40 },
-    caption: "The season comes home.",
+    caption: "The final beat.",
   },
   {
     id: "M04",
@@ -88,11 +88,22 @@ export const mediaAssets: MediaAsset[] = [
     focalPoint: { x: 50, y: 60 },
     caption: "Conditions.",
   },
+  {
+    id: "M07",
+    src: "/assets/atmos-barcelona.png",
+    alt: "Abstract warm Mediterranean dusk light over a Spanish circuit — home weekend atmosphere",
+    event: "Barcelona",
+    year: 2026,
+    rightsStatus: "generated-atmosphere",
+    focalPoint: { x: 50, y: 45 },
+    caption: "Home — Barcelona.",
+  },
 ];
 
 export const heroAsset = mediaAssets.find((m) => m.id === "M01")!;
 export const melbourneAsset = mediaAssets.find((m) => m.id === "M02")!;
 export const madridAsset = mediaAssets.find((m) => m.id === "M03")!;
+export const barcelonaAsset = mediaAssets.find((m) => m.id === "M07")!;
 export const tracksideAssets = mediaAssets.filter((m) =>
   ["M04", "M05", "M06"].includes(m.id),
 );

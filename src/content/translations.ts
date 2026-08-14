@@ -1,12 +1,15 @@
 /**
- * Static translation dictionaries (EN / ES).
+ * Static translation dictionaries (EN / ES) — V2.
  *
- * Rules (CONTENT + DATA_MODEL):
+ * Rules (I18N_AND_CONTENT_ARCHITECTURE):
  *  - No runtime machine translation.
  *  - Team names, Bruno's name, official championship name and circuit names
  *    are NOT translated.
- *  - Locale is persisted client-side; must not cause hydration mismatch
- *    (server renders default EN, client upgrades after mount).
+ *  - Natural motorsport language; proofread Spanish diacritics.
+ *
+ * V2 note: locale is currently client-side (localStorage) for the pitch build.
+ * URL-based /[locale] routing is the intended official-mode architecture
+ * (documented in docs as a known upgrade).
  */
 export type Locale = "en" | "es";
 
@@ -16,7 +19,7 @@ export const translations = {
       season: "Season",
       career: "Career",
       media: "Media",
-      partners: "Partners",
+      press: "Press",
       contact: "Contact",
       menu: "Menu",
       close: "Close",
@@ -27,10 +30,22 @@ export const translations = {
       championship: "FIA Formula 3",
       team: "Van Amersfoort Racing",
       year: "2026",
-      scroll: "Scroll",
+      next: "Next",
+      viewSeason: "View 2026",
     },
-    opening: {
-      presents: "Independent website concept",
+    nextUp: {
+      label: "Next Up",
+      round: "Round",
+      countdown: "Countdown",
+      days: "Days",
+      hours: "Hours",
+      minutes: "Min",
+      seconds: "Sec",
+      live: "Race weekend",
+      liveNote: "The round is underway.",
+      complete: "Round complete",
+      seasonComplete: "Season complete",
+      viewSeason: "View 2026 season",
     },
     season: {
       title: "The Season",
@@ -39,26 +54,31 @@ export const translations = {
       next: "Next",
       upcoming: "Upcoming",
       home: "Home",
+      finale: "Finale",
+      signature: "Signature",
       sprint: "Sprint",
       feature: "Feature",
       qualifying: "Qualifying",
       points: "pts",
       viewDetail: "View season detail",
+      lastVerified: "Last verified",
     },
     melbourne: {
       index: "01",
       title: "Melbourne",
-      label: "First F3 win",
+      label: "First FIA F3 win",
       sprint: "Sprint",
       sprintResult: "P1",
       feature: "Feature",
       featureResult: "P4",
       fastestLap: "Fastest lap point",
-      note: "Maiden FIA Formula 3 victory. VAR 1–2.",
+      note: "Maiden FIA Formula 3 victory. VAR 1–2 with Enzo Deligny. Race shortened / red-flagged; reduced points.",
+      moment: "Moment",
     },
     current: {
       title: "Current",
       year: "2026",
+      rhythm: "Rhythm",
       championship: "Championship",
       points: "Points",
       win: "Win",
@@ -66,6 +86,22 @@ export const translations = {
       car: "Car",
       lastVerified: "Last verified",
       snapshot: "14 Aug 2026",
+      rhythmLine: "Consistency, points, and preparation — the season built on rhythm.",
+    },
+    barcelona: {
+      index: "02",
+      label: "Home",
+      title: "Barcelona",
+      year: "2026",
+      line: "A home weekend — sleeping in his own bed, racing in front of his own crowd.",
+      sprint: "Sprint",
+      sprintResult: "P6",
+      feature: "Feature",
+      featureResult: "P6",
+      qualifying: "Qualifying",
+      qualifyingResult: "P6",
+      note: "First of two Spanish rounds in 2026. Ran as high as P3 in the Feature before tyre degradation.",
+      context: "Bruno has described Barcelona as a home event — the round where he could stay at his own house during the weekend.",
     },
     road: {
       title: "The Road",
@@ -73,10 +109,11 @@ export const translations = {
       viewCareer: "View career",
     },
     madrid: {
+      label: "Final Round",
       title: "Madrid",
       dates: "11–13.09.26",
-      home: "Home",
-      line: "The season comes home.",
+      finale: "Finale",
+      line: "The final beat.",
       countdown: "Countdown to the finale",
       days: "Days",
       hours: "Hours",
@@ -94,12 +131,26 @@ export const translations = {
       title: "Trackside",
       credit: "Atmospheric concept imagery",
     },
+    offTrack: {
+      title: "Off Track",
+      sub: "Latest",
+      note: "Official social channels — no follower counts, no scraped media.",
+      instagram: "Instagram",
+      viewInstagram: "View channel",
+    },
+    pressTeaser: {
+      title: "Press Room",
+      sub: "Bio, facts, media resources, and contacts for journalists.",
+      bio50: "Short bio",
+      viewPress: "View press room",
+      pressContact: "Press contact",
+    },
     partners: {
       title: "Partners",
       privateNote:
-        "Partner presentation is private in concept mode. Provisional partner identities are withheld pending management approval.",
+        "Partner presentation is private in pitch mode. Partner identities appear only after management confirmation and brand-usage clearance.",
       officialNote:
-        "Approved partner identities will appear here after confirmation and brand-usage clearance.",
+        "Approved partner identities will appear here after confirmation.",
     },
     contact: {
       title: "Contact",
@@ -112,8 +163,6 @@ export const translations = {
     end: {
       title: "BRUNO DEL PINO",
       number: "16",
-      disclaimer:
-        "Independent website concept. Not affiliated with Bruno Del Pino, Van Amersfoort Racing or FIA Formula 3.",
       links: "Links",
     },
     footer: {
@@ -126,7 +175,7 @@ export const translations = {
       season: "Temporada",
       career: "Trayectoria",
       media: "Media",
-      partners: "Socios",
+      press: "Prensa",
       contact: "Contacto",
       menu: "Menú",
       close: "Cerrar",
@@ -137,10 +186,22 @@ export const translations = {
       championship: "FIA Formula 3",
       team: "Van Amersfoort Racing",
       year: "2026",
-      scroll: "Desplázate",
+      next: "Siguiente",
+      viewSeason: "Ver 2026",
     },
-    opening: {
-      presents: "Concepto web independiente",
+    nextUp: {
+      label: "Siguiente",
+      round: "Ronda",
+      countdown: "Cuenta atrás",
+      days: "Días",
+      hours: "Horas",
+      minutes: "Min",
+      seconds: "Seg",
+      live: "Fin de semana de carrera",
+      liveNote: "La ronda está en marcha.",
+      complete: "Ronda completada",
+      seasonComplete: "Temporada completada",
+      viewSeason: "Ver temporada 2026",
     },
     season: {
       title: "La Temporada",
@@ -149,11 +210,14 @@ export const translations = {
       next: "Siguiente",
       upcoming: "Próxima",
       home: "Casa",
+      finale: "Final",
+      signature: "Señalada",
       sprint: "Sprint",
       feature: "Feature",
       qualifying: "Clasificación",
       points: "pts",
       viewDetail: "Ver detalle de temporada",
+      lastVerified: "Verificado",
     },
     melbourne: {
       index: "01",
@@ -164,11 +228,13 @@ export const translations = {
       feature: "Feature",
       featureResult: "P4",
       fastestLap: "Punto por vuelta rápida",
-      note: "Primera victoria en FIA Formula 3. VAR 1–2.",
+      note: "Primera victoria en FIA Formula 3. VAR 1–2 con Enzo Deligny. Carrera acortada / con bandera roja; puntos reducidos.",
+      moment: "Momento",
     },
     current: {
       title: "Actual",
       year: "2026",
+      rhythm: "Ritmo",
       championship: "Campeonato",
       points: "Puntos",
       win: "Victoria",
@@ -176,6 +242,22 @@ export const translations = {
       car: "Coche",
       lastVerified: "Verificado",
       snapshot: "14 ago 2026",
+      rhythmLine: "Constancia, puntos y preparación — la temporada construida sobre el ritmo.",
+    },
+    barcelona: {
+      index: "02",
+      label: "Casa",
+      title: "Barcelona",
+      year: "2026",
+      line: "Un fin de semana en casa — durmiendo en su propia cama, corriendo ante su público.",
+      sprint: "Sprint",
+      sprintResult: "P6",
+      feature: "Feature",
+      featureResult: "P6",
+      qualifying: "Clasificación",
+      qualifyingResult: "P6",
+      note: "Primera de dos rondas españolas en 2026. Llegó a rodar P3 en la Feature antes del degradado de neumáticos.",
+      context: "Bruno ha descrito Barcelona como un evento en casa — la ronda donde podía quedarse en su propia casa durante el fin de semana.",
     },
     road: {
       title: "El Camino",
@@ -183,15 +265,16 @@ export const translations = {
       viewCareer: "Ver trayectoria",
     },
     madrid: {
+      label: "Ronda Final",
       title: "Madrid",
       dates: "11–13.09.26",
-      home: "Casa",
-      line: "La temporada vuelve a casa.",
+      finale: "Final",
+      line: "El último compás.",
       countdown: "Cuenta atrás hacia la final",
       days: "Días",
       hours: "Horas",
-      minutes: "Min",
-      seconds: "Seg",
+      minutes: "Minutos",
+      seconds: "Segundos",
       live: "Fin de semana de Madrid",
       liveNote: "La final está en marcha.",
       archive: "Final completada",
@@ -204,12 +287,26 @@ export const translations = {
       title: "En Pista",
       credit: "Imágenes atmosféricas de concepto",
     },
+    offTrack: {
+      title: "Fuera de Pista",
+      sub: "Lo último",
+      note: "Canales sociales oficiales — sin recuentos de seguidores, sin medios scrapeados.",
+      instagram: "Instagram",
+      viewInstagram: "Ver canal",
+    },
+    pressTeaser: {
+      title: "Sala de Prensa",
+      sub: "Biografía, datos, recursos para medios y contactos para periodistas.",
+      bio50: "Bio breve",
+      viewPress: "Ver sala de prensa",
+      pressContact: "Contacto de prensa",
+    },
     partners: {
       title: "Socios",
       privateNote:
-        "La presentación de socios es privada en modo concepto. Las identidades provisionales de socios se ocultan pendientes de aprobación.",
+        "La presentación de socios es privada en modo pitch. Las identidades aparecen solo tras confirmación y autorización de uso de marca.",
       officialNote:
-        "Las identidades aprobadas de socios aparecerán aquí tras la confirmación y autorización de uso de marca.",
+        "Las identidades aprobadas aparecerán aquí tras la confirmación.",
     },
     contact: {
       title: "Contacto",
@@ -222,8 +319,6 @@ export const translations = {
     end: {
       title: "BRUNO DEL PINO",
       number: "16",
-      disclaimer:
-        "Concepto web independiente. No afiliado con Bruno Del Pino, Van Amersfoort Racing ni FIA Formula 3.",
       links: "Enlaces",
     },
     footer: {

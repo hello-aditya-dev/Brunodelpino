@@ -12,10 +12,11 @@ import {
 } from "@/content/season-2026";
 import { formatLong } from "@/lib/dates";
 
-type NodeKind = "complete" | "hero" | "next" | "upcoming" | "home";
+type NodeKind = "complete" | "hero" | "next" | "upcoming" | "home" | "finale";
 
 function nodeKind(r: Round): NodeKind {
   if (r.status === "next") return "next";
+  if (r.status === "upcoming" && r.finale) return "finale";
   if (r.status === "upcoming" && r.homeEvent) return "home";
   if (r.status === "upcoming") return "upcoming";
   if (r.heroMoment) return "hero";
@@ -50,9 +51,10 @@ export function RaceTrace() {
           </div>
           <div className="hidden gap-6 md:flex">
             <Legend label={t.season.complete} kind="complete" />
+            <Legend label={t.season.signature} kind="hero" />
             <Legend label={t.season.next} kind="next" />
-            <Legend label={t.season.upcoming} kind="upcoming" />
             <Legend label={t.season.home} kind="home" />
+            <Legend label={t.season.finale} kind="finale" />
           </div>
         </Reveal>
 
@@ -214,8 +216,8 @@ function NodeMark({
   mobile?: boolean;
 }) {
   const size = mobile ? 10 : 14;
-  const ring = kind === "next" || kind === "home";
-  const pulse = (kind === "next" || kind === "home") && !reduce;
+  const ring = kind === "next" || kind === "home" || kind === "finale";
+  const pulse = (kind === "next" || kind === "home" || kind === "finale") && !reduce;
 
   return (
     <span
@@ -245,13 +247,15 @@ function NodeMark({
                 ? "transparent"
                 : kind === "home"
                   ? "var(--color-signal)"
-                  : kind === "upcoming"
-                    ? "transparent"
-                    : "var(--color-soft-white)",
+                  : kind === "finale"
+                    ? "var(--color-signal)"
+                    : kind === "upcoming"
+                      ? "transparent"
+                      : "var(--color-soft-white)",
           border:
             kind === "next" || kind === "upcoming"
               ? "1.5px solid var(--color-muted)"
-              : kind === "home"
+              : kind === "home" || kind === "finale"
                 ? "1.5px solid var(--color-signal)"
                 : "none",
         }}
@@ -264,13 +268,16 @@ function StatusBadge({ kind }: { kind: NodeKind }) {
   const { t } = useLocale();
   const map: Record<NodeKind, string> = {
     complete: t.season.complete,
-    hero: t.season.complete,
+    hero: t.season.signature,
     next: t.season.next,
     upcoming: t.season.upcoming,
     home: t.season.home,
+    finale: t.season.finale,
   };
   const accent =
-    kind === "next" || kind === "home" ? "text-signal" : "text-muted";
+    kind === "next" || kind === "home" || kind === "finale" || kind === "hero"
+      ? "text-signal"
+      : "text-muted";
   return (
     <span className={`mt-2 inline-block text-[0.625rem] font-medium uppercase tracking-[0.18em] ${accent}`}>
       {map[kind]}

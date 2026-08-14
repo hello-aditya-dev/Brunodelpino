@@ -38,6 +38,7 @@ export type Round = {
   status: RoundStatus;
   homeEvent?: boolean;
   heroMoment?: boolean;
+  finale?: boolean;
   expandedFinale?: boolean;
   qualifying?: RaceResult;
   sprint?: RaceResult;
@@ -221,7 +222,7 @@ export const rounds: Round[] = [
     startDate: "2026-09-11",
     endDate: "2026-09-13",
     status: "upcoming",
-    homeEvent: true,
+    finale: true,
     expandedFinale: true,
   },
 ];
@@ -246,4 +247,5 @@ export const madringTest = {
 } as const;
 
 export const nextRound = rounds.find((r) => r.status === "next") ?? null;
-export const homeFinale = rounds.find((r) => r.homeEvent && r.status === "upcoming") ?? null;
+export const homeRace = rounds.find((r) => r.homeEvent) ?? null;
+export const finaleRound = rounds.find((r) => r.finale) ?? null;

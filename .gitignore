@@ -66,3 +66,4 @@ db/*.db-journal
 
 # QA screenshots (local only)
 qa-*.png
+v2-*.png

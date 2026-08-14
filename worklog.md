@@ -88,3 +88,46 @@ Work Log:
 Stage Summary:
 - Repo authorship fully corrected. Global config ensures future commits (including scheduled webDevReview cron runs) use the same identity.
 - No source code changes; only git metadata + screenshot cleanup.
+
+---
+Task ID: 14 (V2 build)
+Agent: main
+Task: V2 production build — critical corrections, new sections, press route, identity, docs.
+
+Work Log:
+- Read full V2 master prompt + all 21 V2 pack files.
+- CRITICAL CORRECTION: Barcelona = HOME, Madrid = FINALE (not home). Retired "THE ROAD HOME"; adopted RHYTHM/16 motif.
+- Updated site-config: centralized pitch/official mode, fixed canonical (removed brunodelpino.concept placeholder), single discreet footer disclaimer.
+- Updated season-2026: Barcelona retains homeEvent, Madrid gets finale:true (not homeEvent). Added finale field to Round type.
+- Updated translations: added nextUp, barcelona (home chapter), madrid (finale reframe), offTrack, pressTeaser sections; added Press to nav; rhythm motif in current.
+- Created motion tokens lib (centralized durations/easings/staggers).
+- Created press content (50-word + 150-word bios EN/ES, fact sheet, asset slots).
+- Generated Barcelona atmospheric image (atmos-barcelona.png) + OG image (og.png, 1200x630).
+- New homepage components: NextUp (data-driven countdown), BarcelonaHome (home-race chapter), MadridFinale (reframed finale), OffTrack (social layer), PressTeaser.
+- Updated Hero: removed concept badge, added NEXT/VIEW 2026 CTA.
+- Updated CurrentStats: CURRENT / RHYTHM with rhythm editorial line.
+- Updated RaceTrace: added finale node state; Melbourne=signature, Barcelona=home, Madrid=finale; updated legends + status badges.
+- New /press route: short bio, full bio, fact sheet, career highlights, 2026 stats, press + management contacts, media resource slots (architecture only in pitch).
+- Removed ConceptBanner from top; single footer pitch disclaimer.
+- Updated header nav: added Press, removed Partners from primary.
+- Updated footer: single V2 pitch disclaimer, Press in routes.
+- Favicon SVG (#16 mark) created.
+- V2 metadata: title "Bruno Del Pino | FIA Formula 3 Driver #16", OG image, summary_large_image, no canonical to fake domain.
+- Created docs: research ledger, asset manifest CSV, UPDATE_SEASON, V2 QA report.
+- Renamed package to bruno-del-pino-site.
+- Generated OG image, favicon, Barcelona atmospheric image.
+- Final lint: clean (0 errors, 0 warnings).
+- Agent-browser QA: all routes 200, Barcelona=HOME confirmed, Madrid=FINALE confirmed, no overflow at 390px/1440px, EN/ES toggle works, no console errors.
+
+Stage Summary:
+- V2 build complete. All critical corrections applied. New sections + /press route functional.
+- P1 BLOCKER: rights-cleared Bruno hero photography required (all current imagery is generated-atmosphere).
+- Known limitations: client-side locale (not URL-based /[locale]); dependency cleanup pending; CI workflow pending.
+
+Unresolved / next-phase recommendations:
+- P1: Obtain approved Bruno photography from management (hero, helmet, car, Melbourne, Barcelona, paddock).
+- P2: Implement URL-based /[locale]/... routing for official-mode SEO readiness.
+- P2: Dependency cleanup (remove Prisma, NextAuth, MDX editor, TanStack, Recharts from starter).
+- P2: Add GitHub Actions CI workflow.
+- P2: Generate Apple touch icon + favicon.ico.
+- P3: Add Playwright e2e for critical routes.

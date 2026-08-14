@@ -4,7 +4,6 @@ import "./globals.css";
 import { LocaleProvider } from "@/lib/locale";
 import { SiteHeader } from "@/components/global/SiteHeader";
 import { SiteFooter } from "@/components/global/SiteFooter";
-import { ConceptBanner } from "@/components/global/ConceptBanner";
 import { siteConfig } from "@/content/site-config";
 
 const barlow = Barlow_Condensed({
@@ -21,21 +20,22 @@ const inter = Inter({
   display: "swap",
 });
 
-// CONCEPT MODE metadata — noindex/nofollow, no "official" claim,
-// no Person/ProfilePage structured data, no sitemap submission.
+// V2 metadata — pitch mode. noindex/nofollow, no official claim.
+// Canonical: no fake .concept domain (V2 fix). Pitch mode uses no canonical
+// to avoid claiming a domain we don't own.
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.baseUrl),
+  metadataBase: new URL(siteConfig.siteOrigin),
   title: {
-    default: "Bruno Del Pino — Independent Website Concept",
-    template: "%s · Bruno Del Pino Concept",
+    default: "Bruno Del Pino | FIA Formula 3 Driver #16",
+    template: "%s | Bruno Del Pino",
   },
   description:
-    "An independent, private website concept for Spanish FIA Formula 3 driver Bruno Del Pino (#16, Van Amersfoort Racing, 2026). Not an official site.",
+    "Bruno Del Pino — Spanish FIA Formula 3 driver, #16, Van Amersfoort Racing, 2026. Melbourne breakthrough, Barcelona home race, Madrid finale.",
   keywords: [
     "Bruno Del Pino",
     "FIA Formula 3",
     "Van Amersfoort Racing",
-    "concept website",
+    "2026 season",
   ],
   authors: [{ name: "Independent Concept" }],
   robots: {
@@ -44,21 +44,36 @@ export const metadata: Metadata = {
     nocache: true,
     googleBot: { index: false, follow: false },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
-    title: "Bruno Del Pino — Independent Website Concept",
+    title: "Bruno Del Pino | FIA Formula 3 Driver #16",
     description:
-      "Private concept site. Not affiliated with Bruno Del Pino, Van Amersfoort Racing or FIA Formula 3.",
+      "Spanish FIA Formula 3 driver. #16, Van Amersfoort Racing, 2026.",
     type: "website",
-    siteName: "Bruno Del Pino Concept",
+    siteName: "Bruno Del Pino",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Bruno Del Pino — FIA Formula 3, #16, 2026",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
-    title: "Bruno Del Pino — Independent Website Concept",
+    card: "summary_large_image",
+    title: "Bruno Del Pino | FIA Formula 3 Driver #16",
     description:
-      "Private concept site. Not affiliated with Bruno Del Pino, Van Amersfoort Racing or FIA Formula 3.",
+      "Spanish FIA Formula 3 driver. #16, Van Amersfoort Racing, 2026.",
+    images: ["/og.png"],
   },
   alternates: {
-    canonical: "/",
     languages: { en: "/", es: "/" },
   },
 };
@@ -86,7 +101,6 @@ export default function RootLayout({
           >
             Skip to content
           </a>
-          <ConceptBanner />
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}

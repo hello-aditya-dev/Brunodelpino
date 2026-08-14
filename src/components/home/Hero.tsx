@@ -72,19 +72,15 @@ export function Hero() {
         style={reduce ? undefined : { y: textY }}
         className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-between px-4 pb-10 pt-28 sm:px-6 md:px-10 md:pb-14 md:pt-32"
       >
-        {/* Top meta row */}
+        {/* Top meta row — year only, no concept badge (V2) */}
         <motion.div
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex items-center justify-between"
         >
-          <span className="meta-label text-soft-white/70">
-            {t.opening.presents}
-          </span>
-          <span className="meta-label hidden text-muted sm:inline">
-            {t.hero.year}
-          </span>
+          <span className="meta-label text-muted">{driver.championship}</span>
+          <span className="meta-label text-muted">{t.hero.year}</span>
         </motion.div>
 
         {/* Center: 16 + name */}
@@ -151,14 +147,23 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Bottom: scroll cue */}
+        {/* Bottom: NEXT CTA (V2) — subtle, athlete-first */}
         <motion.div
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
           className="flex items-center justify-between"
         >
-          <span className="meta-label text-muted">{t.hero.scroll}</span>
+          <a
+            href="#season"
+            className="focus-ring group inline-flex items-center gap-3"
+          >
+            <span className="meta-label text-signal">{t.hero.next}</span>
+            <span className="h-px w-6 bg-signal transition-all group-hover:w-10" aria-hidden="true" />
+            <span className="font-display text-sm uppercase tracking-wide text-soft-white">
+              {t.hero.viewSeason}
+            </span>
+          </a>
           <motion.div
             animate={reduce ? undefined : { y: [0, 6, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}

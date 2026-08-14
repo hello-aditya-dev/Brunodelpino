@@ -14,7 +14,7 @@ const NAV = [
   { key: "season", href: "/#season" },
   { key: "career", href: "/#road" },
   { key: "media", href: "/#trackside" },
-  { key: "partners", href: "/#partners" },
+  { key: "press", href: "/#press" },
   { key: "contact", href: "/#end" },
 ] as const;
 

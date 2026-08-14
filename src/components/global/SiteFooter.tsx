@@ -12,7 +12,7 @@ const ROUTE_LINKS = [
   { label: "Season", href: "/season" },
   { label: "Career", href: "/career" },
   { label: "Media", href: "/media" },
-  { label: "Partners", href: "/partners" },
+  { label: "Press", href: "/press" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -118,14 +118,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Disclaimer */}
+        {/* Disclaimer — single discreet pitch line (V2) */}
         <div className="mt-12 border-t border-line-dark pt-6 md:mt-16">
           <p className="max-w-3xl text-xs leading-relaxed text-muted">
-            {t.end.disclaimer}
+            {siteConfig.pitchDisclaimer}
           </p>
           <p className="mt-3 text-[0.6875rem] uppercase tracking-[0.18em] text-muted/60">
-            © {new Date().getFullYear()} — Independent concept. All race data
-            owned by its respective rights holders.
+            © {new Date().getFullYear()} — All race data owned by its respective rights holders.
           </p>
         </div>
       </div>

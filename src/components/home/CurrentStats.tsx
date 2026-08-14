@@ -34,8 +34,11 @@ export function CurrentStats() {
             <span className="meta-label text-signal">03</span>
             <h2 className="section-title mt-2 text-ink">
               {t.current.title}
-              <span className="text-signal"> / {t.current.year}</span>
+              <span className="text-signal"> / {t.current.rhythm}</span>
             </h2>
+            <p className="mt-3 max-w-md text-sm text-ink/60">
+              {t.current.rhythmLine}
+            </p>
           </div>
           <div className="hidden text-right md:block">
             <p className="meta-label text-ink/50">{t.current.lastVerified}</p>
