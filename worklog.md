@@ -72,3 +72,19 @@ Unresolved / next-phase recommendations:
 - Confirm Instagram handle @_brunodelpino manually before official handoff.
 - Add per-route metadata exports (move route pages to server components w/ client text islands) for stronger SEO scaffolding (currently noindex, so low priority).
 - Consider a subtle Madrid circuit line abstraction (CSS/SVG) as a distinct Madrid visual (currently shares the generic line motif).
+
+---
+Task ID: 13
+Agent: main
+Task: Update git author identity to witejackel-eng / witejackel@gmail.com.
+
+Work Log:
+- Set local + global git config: user.name=witejackel-eng, user.email=witejackel@gmail.com.
+- Rewrote all 6 historical commits via git filter-branch --env-filter to apply the new author + committer identity retroactively.
+- Cleaned up: untracked accidentally-committed QA screenshots (qa-home-full.png, qa-home-top.png); added qa-*.png to .gitignore.
+- Force-pushed rewritten history to https://github.com/witejackel-eng/Brunodelpino (main).
+- Verified on GitHub API: all commits now show author witejackel-eng <witejackel@gmail.com>.
+
+Stage Summary:
+- Repo authorship fully corrected. Global config ensures future commits (including scheduled webDevReview cron runs) use the same identity.
+- No source code changes; only git metadata + screenshot cleanup.
