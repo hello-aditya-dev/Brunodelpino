@@ -1,0 +1,241 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  BRUNO DEL PINO — concept design system.
+  Palette (concept colors, not claimed official brand colors):
+    ink          #090909  (near-black field)
+    paper        #F2EFE8  (warm off-white)
+    soft-white   #FAF8F2  (lifted paper)
+    muted        #989898  (meta / secondary)
+    line         #2A2A2A  (hairline on dark)
+    signal       #FF5A1F  (restrained orange accent, <10-15% per viewport)
+*/
+@theme inline {
+  --color-ink: #090909;
+  --color-paper: #f2efe8;
+  --color-soft-white: #faf8f2;
+  --color-muted: #989898;
+  --color-line-dark: #2a2a2a;
+  --color-signal: #ff5a1f;
+  --color-signal-dim: #b33d12;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-barlow);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Concept site is a dark-led editorial composition.
+   We anchor the base body to ink so the opening/hero read as near-black. */
+:root {
+  --radius: 0.25rem;
+  --background: #090909;
+  --foreground: #f2efe8;
+  --card: #111111;
+  --card-foreground: #f2efe8;
+  --popover: #0e0e0e;
+  --popover-foreground: #f2efe8;
+  --primary: #f2efe8;
+  --primary-foreground: #090909;
+  --secondary: #181818;
+  --secondary-foreground: #f2efe8;
+  --muted: #181818;
+  --muted-foreground: #989898;
+  --accent: #1c1c1c;
+  --accent-foreground: #f2efe8;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #ff5a1f;
+  --chart-1: #ff5a1f;
+  --chart-2: #f2efe8;
+  --chart-3: #989898;
+  --chart-4: #2a2a2a;
+  --chart-5: #faf8f2;
+  --sidebar: #0e0e0e;
+  --sidebar-foreground: #f2efe8;
+  --sidebar-primary: #f2efe8;
+  --sidebar-primary-foreground: #090909;
+  --sidebar-accent: #1c1c1c;
+  --sidebar-accent-foreground: #f2efe8;
+  --sidebar-border: #2a2a2a;
+  --sidebar-ring: #ff5a1f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: #090909;
+  }
+}
+
+/* ---------- Editorial typography utilities ---------- */
+@layer components {
+  .font-display {
+    font-family: var(--font-barlow), "Arial Narrow", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+  .font-display-light {
+    font-family: var(--font-barlow), "Arial Narrow", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .meta-label {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .hero-display {
+    font-family: var(--font-barlow), "Arial Narrow", sans-serif;
+    font-weight: 700;
+    line-height: 0.84;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-size: clamp(3.25rem, 16vw, 16rem);
+  }
+  .section-title {
+    font-family: var(--font-barlow), "Arial Narrow", sans-serif;
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    font-size: clamp(2.75rem, 9vw, 9rem);
+  }
+  .stat-number {
+    font-family: var(--font-barlow), "Arial Narrow", sans-serif;
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: -0.03em;
+    font-size: clamp(4rem, 11vw, 11rem);
+  }
+  .editorial-body {
+    font-size: clamp(1rem, 1.15vw, 1.1875rem);
+    line-height: 1.55;
+    color: var(--color-soft-white);
+    max-width: 60ch;
+  }
+}
+
+/* ---------- Hairline & racing-line helpers ---------- */
+.hairline {
+  background: var(--color-line-dark);
+}
+.hairline-paper {
+  background: rgba(242, 239, 232, 0.16);
+}
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+/* Custom scrollbar for long lists */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-dark) transparent;
+}
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-line-dark);
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes line-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
